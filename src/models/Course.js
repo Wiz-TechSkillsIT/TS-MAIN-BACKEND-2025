@@ -8,6 +8,7 @@ const CourseSchema = new mongoose.Schema({
     level: Number,
     trackName: String,
     type: String,
+    image: String
 });
 
 // Export the Course model

@@ -4,8 +4,10 @@ const axios = require('axios');
 const courseRoutes = require('./routes/course'); // Import course routes
 const videoRoutes = require('./routes/video'); // Import video routes
 const userRoutes = require('./routes/user'); 
-const paymentRoutes = require('./routes/payment');
-const authRoutes = require('./routes/auth');
+ const authRoutes = require('./routes/auth');
+const paymentRoute = require("./routes/paymentRoutes");
+require("dotenv").config();
+
 const { dbConnect } = require('./config/db');
 
 const app = express();
@@ -58,7 +60,7 @@ app.post('/api/video/vdocipher/otp', async (req, res) => {
 // Routes
 app.use('/api/courses', courseRoutes);
 app.use('/api/user', userRoutes);
-app.use('/api/payment', paymentRoutes);
+app.use("/api/payment", paymentRoute);
 app.use('/api/video', videoRoutes);
 app.use('/api/auth', authRoutes);
 // Error handler
@@ -71,4 +73,8 @@ app.use((err, req, res, next) => {
 const PORT = 5005;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
+
+console.log("Razorpay Key ID:", process.env.RAZORPAY_KEY_ID);
+console.log("Razorpay Key Secret:", process.env.RAZORPAY_KEY_SECRET);
+
 });

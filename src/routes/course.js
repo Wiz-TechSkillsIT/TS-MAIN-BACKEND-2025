@@ -10,7 +10,7 @@ const JWT_SECRET_KEY = '151183200722';
 // POST API to create a new course
 router.post('/add', async (req, res) => {
     try {
-        const { title, fee, courseId, level, trackName, type } = req.body;
+        const { title, fee, courseId, level, trackName, type,image } = req.body;
 
         // Create a new course instance
         const newCourse = new Course({
@@ -19,7 +19,8 @@ router.post('/add', async (req, res) => {
             courseId,
             level,
             trackName,
-            type
+            type,
+            image
         });
 
         // Save the course to the database
