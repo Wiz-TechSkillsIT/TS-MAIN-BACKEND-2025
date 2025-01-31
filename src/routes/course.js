@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Course = require('../models/Course'); // Adjust the path as necessary
-const { default: authenticateJWT } = require('../config/middleware');
+const authenticateJWT = require('../config/middleware.js');
 const User = require('../models/User'); // Import Course model
 const Enrollment = require('../models/Enrollment'); // Import Course model
 

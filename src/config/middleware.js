@@ -1,7 +1,7 @@
-import jwt from 'jsonwebtoken';
+const jwt = require('jsonwebtoken');
 
 const JWT_SECRET_KEY = '151183200722';
- 
+
 // Middleware for JWT validation
 const authenticateJWT = (req, res, next) => {
     const authHeader = req.headers.authorization;
@@ -14,7 +14,7 @@ const authenticateJWT = (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, JWT_SECRET_KEY);
-         req.user = decoded; // Attach user info to the request
+        req.user = decoded; // Attach user info to the request
         next();
     } catch (err) {
         console.error('JWT Verification Failed:', err.message);
@@ -22,4 +22,5 @@ const authenticateJWT = (req, res, next) => {
     }
 };
 
-export default authenticateJWT;
+// ✅ FIX: Export correctly for CommonJS
+module.exports = authenticateJWT;
